@@ -1,0 +1,366 @@
+<!--
+        Name: John Kuczynski, John_Kuczynski@student.uml.edu, Student at UMass Lowell.
+        Class: COMP 4610-201, GUI Programming I.
+        File: /usr/cs/2019/jkuczyn1/public_html/461f2017/Kuczynski-John_comp4610f2017-final-project/AnotherFile.html. The file is named AnotherFile.html, and it is in directory /usr/cs/2019/jkuczyn1/public_html/461f2017/Kuczynski-John_comp4610f2017-final-project
+        This file was created on 1-Dec-2017.
+        Last updated by JK on 12-Dec-2017, 14:49.
+        Description: A website which provides two calculators. One accepts inputs concerning grades, and displays the current final grade, and the best possible final grade. The other is a house calculator, which displays the cost of renting, and the cost of buying a house.
+-->
+
+<html ng-app="countryApp">
+  <head>
+    <link id="TRY" href="./css/style3.css" rel="stylesheet" type="text/css">
+
+    <meta charset="utf-8">
+    <title>GUI Homework 4</title>
+      <link id="TRY" href="./css/style3.css" rel="stylesheet" type="text/css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.min.js"></script>
+    <script src="./js/MyJs.js"></script> 
+
+    <script>
+
+//****************************************
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks, myTry1;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    /**/
+        myTry1 = document.getElementsByClassName("myTry1");
+    for (i = 0; i < myTry1.length; i++) {
+        myTry1[i].style.display = "none";
+    }
+    /**/
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    //if(document.getElementById(cityName) != "")
+    document.getElementById("myTry1").style.display = "block";
+    document.getElementById("myTry2").style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+//*****************************************************
+
+    var ii = 1;
+      var countryApp = angular.module('countryApp', []);
+      countryApp.controller('CountryCtrl', function ($scope){
+      	$scope.title = "Grade Calculator";
+				$scope.a100 = "Hello";
+				$scope.a101 = "";
+				$scope.a102 = "";
+        $scope.fin1 = "";
+        $scope.fin2 = "";
+        $scope.fin3 = "";
+        $scope.fin4 = "";
+        $scope.net1 = "lost";
+        
+//**************************************************
+        $scope.addName = function() {
+         
+         //Blank out the answers if one of the input fields has invalid input.
+         if($scope.homeworkCost == ".")
+         {
+         	alert("Invalid input in the homeworkCost input field. I suspect that you entered nothing but a period.");
+            return;
+         }
+
+         if($scope.quizCost == ".")
+         {
+         	alert("Invalid input in the quizCost input field. I suspect that you entered nothing but a period.");
+            return;
+         }
+
+         if($scope.testCost == ".")
+         {
+         	alert("Invalid input in the testCost input field. I suspect that you entered nothing but a period.");
+            return;
+         }
+         
+         if($scope.homeworkGrades == undefined)
+         {
+         	alert("Invalid input in the homeworkGrades input field. I suspect that you entered nothing but spaces in the input box.");
+            return;
+         }
+         
+         if($scope.quizGrades == undefined)
+         {
+         	alert("Invalid input in the quizGrades input field. I suspect that you entered nothing but spaces in the input box.");
+            return;
+         }
+    
+    	//This is caused by only zeros, I think.
+         if($scope.testGrades == undefined)
+         {
+         	alert("Invalid input in the testGrades input field. I suspect that you entered nothing but spaces in the input box.");
+            return;
+         }
+         
+         var myInput1 = $scope.homeworkGrades;
+         var res = myInput1.split(" ");
+         var newArray = [];
+         var a;
+         for(a = 0; a < res.length; a++)
+         {
+          //Only get relevent input. Ignore stuff which is incorrect.
+         	if(res[a] != " " && res[a] != "" && res[a] != ".")
+            {
+            	newArray.push(res[a]);
+            }
+         }
+         
+         myInput1 = $scope.quizGrades;
+         res = myInput1.split(" ");
+         var newArray2 = [];
+         for(a = 0; a < res.length; a++)
+         {
+          //Only get relevent input. Ignore stuff which is incorrect.
+         	if(res[a] != " " && res[a] != "" && res[a] != ".")
+            {
+            	newArray2.push(res[a]);
+            }
+         }
+         
+         myInput1 = $scope.testGrades;
+         res = myInput1.split(" ");
+         var newArray3 = [];
+         for(a = 0; a < res.length; a++)
+         {
+          //Only get relevent input. Ignore stuff which is incorrect.
+         	if(res[a] != " " && res[a] != "" && res[a] != ".")
+            {
+            	newArray3.push(res[a]);
+            }
+         }
+         
+          //Send an error message if no valid number was entered into the first input field. Think caused by entering " . . . "
+         if(newArray.length < 1)
+         {
+         	alert("You have not entered any numbers in the homeworkGrades field.");
+            return;
+         }
+         
+         if(newArray2.length < 1)
+         {
+         	alert("You have not entered any numbers in the quizGrades field.");
+            return;
+         }
+         
+         if(newArray3.length < 1)
+         {
+         	alert("You have not entered any numbers in the testGrades field.");
+            return;
+         }
+         
+         var mySum = 0;
+         var bestSum = 0;
+         for(var xyz = 0; xyz < newArray.length; xyz++)
+         {
+         	mySum += (parseFloat(newArray[xyz])/100.0)*$scope.homeworkCost;
+            bestSum += parseFloat($scope.homeworkCost);
+         }
+         
+         for(var xyz = 0; xyz < newArray2.length; xyz++)
+         {
+         	mySum += (parseFloat(newArray2[xyz])/100.0)*$scope.quizCost;
+            bestSum += parseFloat($scope.quizCost);
+         }
+         //alert("Sum = " + mySum);
+         
+         for(var xyz = 0; xyz < newArray3.length; xyz++)
+         {
+         	mySum += (parseFloat(newArray3[xyz])/100.0)*$scope.testCost;
+            bestSum += (parseFloat($scope.testCost))*1.0;
+         }
+         
+         var bestGrade = 0;
+         bestGrade = 100 - (parseFloat(bestSum)-parseFloat(mySum));
+					$scope.a101 = mySum;
+					$scope.a102 = bestGrade;
+
+        }; //end of function addName
+        
+        
+        
+        /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+        $scope.switch = function() {
+          ListPrice = $scope.I1;
+          Downpayment = $scope.I21
+          NumberOfMonths = $scope.I2
+          YearlyInterestRate = $scope.I22
+
+          Principal = ListPrice/* - Downpayment*/;
+
+          Answer1 = CalcCostPerMonth(Principal, 0, Downpayment, NumberOfMonths, YearlyInterestRate);
+
+          last1 = Answer1 * NumberOfMonths;
+          last2 = parseFloat(last1) + parseFloat(Principal*Downpayment*.01);
+          $scope.fin1 = last2;
+          
+
+/*NEW!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+          income = $scope.I31;
+          saved = 0.0;
+          if(income <= 9325)
+          {
+            saved = income * .1;
+          }
+
+          else if(income <= 37950)
+          {
+            step1 = parseFloat(income * 1.0) - parseFloat(9325.0);
+            saved = parseFloat(932.50) + parseFloat(step1*.15); 
+          }
+
+          else if(income <= 91900)
+          {
+            step1 = parseFloat(income * 1.0) - parseFloat(37950.0);
+            saved = parseFloat(5226.25) + parseFloat(step1*.25); 
+          }
+
+          else if(income <= 191650)
+          {
+            step1 = parseFloat(income * 1.0) - parseFloat(91900.0);
+            saved = parseFloat(18713.75) + parseFloat(step1*.28); 
+          }
+
+          else if(income <= 416700)
+          {
+            step1 = parseFloat(income * 1.0) - parseFloat(191650.0);
+            saved = parseFloat(46643.75) + parseFloat(step1*.33); 
+          }
+
+          else if(income <= 418400)
+          {
+            step1 = parseFloat(income * 1.0) - parseFloat(416700.0);
+            saved = parseFloat(120910.25) + parseFloat(step1*.35); 
+          }
+
+          else
+          {
+            step1 = parseFloat(income * 1.0) - parseFloat(418400.0);
+            saved = parseFloat(121505.25) + parseFloat(step1*.396); 
+          }
+
+          //alert("saved = " + saved);
+
+          years = NumberOfMonths/12.0;
+          GrandSaved = saved*years;
+          GrandTotal = last2 - GrandSaved;
+          $scope.fin2 = GrandTotal;
+          $scope.fin4 = GrandTotal - ListPrice;//
+					//alert("A = ");
+
+          $scope.fin3 = $scope.I3 * NumberOfMonths;
+
+
+        }; //end of function switch
+        
+        
+      });
+   
+    </script>
+  </head>
+
+  <body ng-controller="CountryCtrl">
+		<div class="tab">
+      <button class="tablinks" onclick="openCity(event, 'Grade Calculator')">Grade Calculator</button>
+      <button class="tablinks" onclick="openCity(event, 'House Calculator')">House Calculator</button>
+    </div>
+
+    <div id="Grade Calculator" class="tabcontent">
+      <h3>Grade Calculator</h3>
+      <p>Current grade is {{a101}}%</p>
+	    <p>Best possible grade at this point is {{a102}}%</p>
+
+      <form ng-submit="addName()"> <b>The percent of the final grade is one homework worth: </b>
+        <br>
+	      <input type="text"  ng-model="homeworkCost" pattern="([0-9]*[.]?[0-9]*)" required title="Enter zero or more number. Then, enter zero or one decimal points. Then enter zero or more numbers. Finally, enter a space. If you wish to enter another number, follow the format again. Here is an example: for '123,1.2,.9', enter '123 1.2 .9 '. Don't enter any commas or dollar signs.">
+        <br>
+	      <b>Grades for homeworks so far:</b>
+        <br>
+        <input type="text"  ng-model="homeworkGrades" pattern="([0-9]*[.]?[0-9]*[\s])+" required title="Enter zero or more number. Then, enter zero or one decimal points. Then enter zero or more numbers. Finally, enter a space. If you wish to enter another number, follow the format again. Here is an example: for '123,1.2,.9', enter '123 1.2 .9 '. Don't enter any commas or dollar signs.">
+        <br>
+        <b>The percent of the final grade is one quiz worth: </b>
+        <br>
+	      <input type="text"  ng-model="quizCost" pattern="([0-9]*[.]?[0-9]*)" required title="Enter zero or more number. Then, enter zero or one decimal points. Then enter zero or more numbers. Finally, enter a space. If you wish to enter another number, follow the format again. Here is an example: for '123,1.2,.9', enter '123 1.2 .9 '. Don't enter any commas or dollar signs.">
+        <br>
+	      <b>Grades for quizes so far:</b>
+        <br>
+        <input type="text"  ng-model="quizGrades" pattern="([0-9]*[.]?[0-9]*[\s])+" required title="Enter zero or more number. Then, enter zero or one decimal points. Then enter zero or more numbers. Finally, enter a space. If you wish to enter another number, follow the format again. Here is an example: for '123,1.2,.9', enter '123 1.2 .9 '. Don't enter any commas or dollar signs.">
+        <br>
+        <b>The percent of the final grade is one test worth: </b>
+        <br>
+	      <input type="text"  ng-model="testCost" pattern="([0-9]*[.]?[0-9]*)" required title="Enter zero or more number. Then, enter zero or one decimal points. Then enter zero or more numbers. Finally, enter a space. If you wish to enter another number, follow the format again. Here is an example: for '123,1.2,.9', enter '123 1.2 .9 '. Don't enter any commas or dollar signs.">
+        <br>
+	      <b>Grades for test so far:</b>
+        <br>
+        <input type="text"  ng-model="testGrades" pattern="([0-9]*[.]?[0-9]*[\s])+" required title="Enter zero or more number. Then, enter zero or one decimal points. Then enter zero or more numbers. Finally, enter a space. If you wish to enter another number, follow the format again. Here is an example: for '123,1.2,.9', enter '123 1.2 .9 '. Don't enter any commas or dollar signs.">
+        <br>
+        <input type="submit" value="submit">
+      </form>
+    </div>
+
+    <div id="House Calculator" class="tabcontent container">
+      <h3>House Calculator</h3>
+	    <!--<p>{{a100}} per Month</p>
+      <p>{{fin1}} total</p>-->
+      <p>Cost of renting: you lost {{fin3}} dollars</p>
+      <p>Cost of purchase: you lost {{fin2}} dollars</p>
+      <p>Counting the house you gained as an asset, you lost {{fin4}} dollars</p>
+      <p>If the number is a negative, then you gained the positive equivalent to the number.</p>
+      
+		  <form ng-submit="switch()"> 
+          <div id="myDiv">
+					<p id = "middleP"><input type="submit" value="submit"></p>
+				</div>
+          
+        <div id="myTry1" class="tabcontent myTry1">
+<p id="one1"><b>Please enter the list price of the house</b></p>
+	        <input type="text"  ng-model="I1" pattern="([0-9]*[.]?[0-9]*)" required title="Enter zero or more number. Then, enter zero or one decimal points. Then enter zero or more numbers. Finally, enter a space. If you wish to enter another number, follow the format again. Here is an example: for '123,1.2,.9', enter '123 1.2 .9 '. Don't enter any commas or dollar signs.">
+	        <p id="two1"><b>Please enter the number of months that you intend to pay of the house in. If the house is paid for over 36 equal monthly installments, enter 36 below. </b><p>
+          <input type="text"  ng-model="I2" pattern="([0-9]*[.]?[0-9]*)" required title="Enter zero or more number. Then, enter zero or one decimal points. Then enter zero or more numbers. Finally, enter a space. If you wish to enter another number, follow the format again. Here is an example: for '123,1.2,.9', enter '123 1.2 .9 '. Don't enter any commas or dollar signs.">
+	        <p id="three1"><b>Please enter the downpayment percentage below. </b></p>
+          <input type="text"  ng-model="I21" pattern="([0-9]*[.]?[0-9]*)" required title="Enter zero or more number. Then, enter zero or one decimal points. Then enter zero or more numbers. Finally, enter a space. If you wish to enter another number, follow the format again. Here is an example: for '123,1.2,.9', enter '123 1.2 .9 '. Don't enter any commas or dollar signs.">
+	        <p id="four1"><b>Please enter the market interest below. It should be the interest per year. For instance, if the market interest is 0%, enter 0 below.</b></p>
+          <input type="text"  ng-model="I22" pattern="([0-9]*[.]?[0-9]*)" required title="Enter zero or more number. Then, enter zero or one decimal points. Then enter zero or more numbers. Finally, enter a space. If you wish to enter another number, follow the format again. Here is an example: for '123,1.2,.9', enter '123 1.2 .9 '. Don't enter any commas or dollar signs.">
+	        <p id="five1"><b>Please enter your yearly salary.</b></p>
+          <input type="text"  ng-model="I31" pattern="([0-9]*[.]?[0-9]*)" required title="Enter zero or more number. Then, enter zero or one decimal points. Then enter zero or more numbers. Finally, enter a space. If you wish to enter another number, follow the format again. Here is an example: for '123,1.2,.9', enter '123 1.2 .9 '. Don't enter any commas or dollar signs.">
+        </div>
+        
+        <div id="myTry2" class="tabcontent myTry2">
+        <p><b>Please enter the monthly rent cost: </b></p>
+	      <input type="text"  ng-model="I3" pattern="([0-9]*[.]?[0-9]*)" required title="Enter zero or more number. Then, enter zero or one decimal points. Then enter zero or more numbers. Finally, enter a space. If you wish to enter another number, follow the format again. Here is an example: for '123,1.2,.9', enter '123 1.2 .9 '. Don't enter any commas or dollar signs.">
+        <br><br><br>
+        <br><br><br>
+        <br><br><br>
+        <br><br><br>
+        <br><br><br>
+        <br><br><br>
+        <br><br><br>
+        <br><br><br>
+        <br><br><br>
+        <br><br><br>
+        <br><br><br>
+        <br><br>
+
+        </div>
+
+				
+        	
+      </form>
+</div>
+
+
+
+
+    <p>Because I had difficulty dealing with the tax deductions from purchasing a house, I created my own. Basically, I assume that there is no income tax, while paying off a loan for a house.</p>
+   
+
+    
+  </body>
+</html>
+

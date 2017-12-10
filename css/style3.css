@@ -1,0 +1,63 @@
+/*
+        Name: John Kuczynski, John_Kuczynski@student.uml.edu, Student at UMass Lowell.
+        Class: COMP 4610-201, GUI Programming I.
+        File: /usr/cs/2019/jkuczyn1/public_html/461f2017/Kuczynski-John_comp4610f2017-final-project/css/style3.css. The file is named style3.css, and it is in directory /usr/cs/2019/jkuczyn1/public_html/461f2017/Kuczynski-John_comp4610f2017-final-project/css
+        This file was created on 1-Dec-2017.
+        Last updated by JK on 12-Dec-2017, 17:06.
+        Description: A website which provides two calculators. One accepts inputs concerning grades, and displays the current final grade, and the best possible final grade. The other is a house calculator, which displays the cost of renting, and the cost of buying a house..
+*/
+
+body {font-family: Arial;}
+
+/* Style the tab */
+div.tab {
+    overflow: hidden;
+    border: 1px solid black/*#ccc*/;
+    background-color: white/*#f1f1f1*/;
+}
+
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    background-color: gray;
+}
+
+.container{margin:auto;}
+
+/*.myTry1{background-color: blue; width: 33%; float:left;}
+.myTry2{background-color: green; width: 33%; margin-left:37%;}*/
+
+.myTry1{background-color: gray; width: 45%; border:1 px solid gray; float:left;}
+.myTry2{background-color: gray; width: 45%; margin-left:50%;}
+
+#myDiv{background-color:white;}
+
+#middleP{text-align: center;}
+
+//p{color:black; max-width:10em;}
+#one1, #two1, #three1, #four1, #five1{max-width:10em;}

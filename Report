@@ -1,0 +1,26 @@
+John Kuczynski
+John_Kuczynski@student.uml.edu
+
+The project solves two problems.
+1. It calculates for the user the user's current final grade, and the highest possible final grade the user may achieve.
+2. It calculates both the cost of renting a house, and the cost of purchasing a house.
+
+There are some online calculators, but they are far less streamlined than what I have in mind. For example, if the student has three homework grades, s/he has to enter the three grades, and enter how much one homework is worth three times. My interface would only require the user to enter the grades, and how much one homework is worth once.
+
+I used w3chools.com to get an example of how to create a tabbed menu; everything else was my own work.
+
+
+User Manual:
+The web page can be found at weblab.cs.uml.edu/~jkuczyn1/461f2017/Kuczynski-John_comp4610f2017-final-project/AnotherFile.html
+When the user enters the web page, there will be a menu with the options for Grade Calculator and House Calculator.
+  Grade Calculator:
+    For each input field requesting the amount the type is worth, simply enter the number, and nothing more.
+    For each input field which requests grades, do the following:
+      If there are no grades in that type yet, enter a zero, and then a space.
+      If there is one grade of that type, enter the grade, and then a space.
+      If there are multiple grades of that type, enter the grades, separating them with a space. Enter a space after the last grade.
+
+  House Calculator:
+    Follow the instructions on the page for what to enter. After hitting the submit button, the answers will appear. If the user will save money by buying a house, the cost of purchasing a house answers will be negative, displaying that the user lost negitive money; or in other words, saved money.
+
+
